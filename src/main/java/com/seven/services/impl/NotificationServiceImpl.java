@@ -12,9 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationServiceImpl {
 
-
     @Autowired
-    public JavaMailSender emailSender;
+    private  JavaMailSender emailSender;
 
     @Async
     public void sendNotificaitoin(String to, String password) {

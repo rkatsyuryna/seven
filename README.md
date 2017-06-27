@@ -1,3 +1,5 @@
+Status [![Project status](https://travis-ci.org/rkatsyuryna/seven.svg?branch=master)]
+
 SAMPLE APP with 
 ===========
 

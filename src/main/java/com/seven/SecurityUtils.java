@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import sun.tools.jstat.OptionLister;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Optional;

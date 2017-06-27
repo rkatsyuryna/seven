@@ -43,5 +43,3 @@ dependencies {
     testCompile('com.h2database:h2')
 }
 
-
-cobertura.coverageFormats = ['html', 'xml']

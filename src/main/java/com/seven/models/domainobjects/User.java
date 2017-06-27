@@ -33,7 +33,6 @@ public class User {
     private final String phone;
 
     @Column(name = "password", nullable = false)
-    @Setter
     private final String password;
 
     @ManyToOne(fetch=FetchType.EAGER)
