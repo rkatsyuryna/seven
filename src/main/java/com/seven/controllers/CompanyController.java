@@ -3,6 +3,7 @@ package com.seven.controllers;
 import com.seven.controllers.model.CompanyForm;
 import com.seven.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import java.util.Map;
 /**
  * Created by ruslankatsyuryna on 6/27/17.
  */
+@Controller
 public class CompanyController {
 
     @Autowired
