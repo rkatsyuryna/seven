@@ -1,13 +1,8 @@
 package com.seven.controllers;
 
 import com.seven.controllers.model.CompanyForm;
-import com.seven.controllers.model.UserForm;
-import com.seven.exceptions.BusinessSmthException;
-import com.seven.models.domainobjects.User;
 import com.seven.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by ruslankatsyuryna on 6/27/17.
