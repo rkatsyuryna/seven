@@ -1,0 +1,11 @@
+language: java
+jdk:
+- oraclejdk8
+services:
+- rabbitmq
+install: ''
+script:
+script: ./gradlew test
+after_success:
+- ./gradlew cobertura coveralls
+
