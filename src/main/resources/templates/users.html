@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<h1>Hello, <td th:text="${username}"/></h1>
+
+<div class="span12">
+    <table id="myTableId" dt:table="true">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>CompanyName</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.id}" />
+            <td th:text="${user.firstName}" />
+            <td th:text="${user.lastName}" />
+            <td th:text="${user.email}" />
+            <td th:text="${user.phone}" />
+            <td th:text="${user.company != null} ? ${user.company.name}" />
+            <td th:text="${user.role.roleName}" />
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
