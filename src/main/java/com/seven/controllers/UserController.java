@@ -64,9 +64,8 @@ public class UserController {
                             "There is already a user registered with the email provided");
         }
 
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("newUser");
-        } else {
+        if (!bindingResult.hasErrors()) {
+
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String username = auth.getName(); //get logged in username
 
@@ -82,9 +81,9 @@ public class UserController {
 
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("userForm", new UserForm());
-            modelAndView.setViewName("newUser");
-
         }
+        modelAndView.setViewName("newUser");
+
         return modelAndView;
     }
 

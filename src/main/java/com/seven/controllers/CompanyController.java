@@ -41,14 +41,13 @@ public class CompanyController {
     public ModelAndView createNewCompany(@Valid CompanyForm formCompany, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
+        if (!bindingResult.hasErrors()) {
+            companyService.createCompany(formCompany);
 
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("newCompany");
+            modelAndView.addObject("successMessage", "New company created");
+            modelAndView.addObject("formCompany", new CompanyForm());
         }
-        companyService.createCompany(formCompany);
 
-        modelAndView.addObject("successMessage", "New company created");
-        modelAndView.addObject("formCompany", new CompanyForm());
         modelAndView.setViewName("newCompany");
 
         return modelAndView;
