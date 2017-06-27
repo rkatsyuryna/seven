@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
         User user;
 
         Company company = companyRepository.findCompanyByName(newUser.getCompany());
-        Role role = roleRepository.getRoleByRoleName(UserRole.valueOf(newUser.getRole()));
+        Role role = roleRepository.getRoleByRoleName(newUser.getRole());
 
         if (SecurityUtils.isAdmin() && SecurityUtils.isOwner()) {
             user = User.builder()
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
         } else if (SecurityUtils.isOwner()) {
             Optional<User> logedinUser = getUserByEmail(userName);
 
-            logedinUser.filter(isCompanyNameAcceptable(newUser.getCompany())).orElseThrow(() -> new BusinessSmthException(String.format("Company owner %s has not privileges to create user %s for company", userName, newUser.getCompany())));
+            logedinUser.filter(isCompanyNameAcceptable(newUser.getCompany())).orElseThrow(() -> new BusinessSmthException(String.format("Company owner %s has not privileges to create user %s for company", userName, newUser.getEmail(), newUser.getCompany())));
 
             if(!isRoleAcceptable(newUser.getRole())) {
                 throw new BusinessSmthException("User can not be created by Company owner with provided role");
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
         return u -> u.getCompany().getName().equalsIgnoreCase(newUserCompanyName);
     }
 
-    private boolean isRoleAcceptable(String newUserRole) {
-        return UserRole.COMPANY_EMPLOYER.toString().equalsIgnoreCase(newUserRole);
+    private boolean isRoleAcceptable(UserRole newUserRole) {
+        return UserRole.COMPANY_EMPLOYER == newUserRole;
     }
 }
