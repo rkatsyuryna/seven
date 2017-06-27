@@ -1,13 +1,13 @@
 SAMPLE APP with 
 ===========
 
-Java 8
-Spring Boot
-Spring Security
-Gradle
-Thymeleaf
-Bootstrap css
-Mysql
+* Java 8
+* Spring Boot
+* Spring Security
+* Gradle
+* Thymeleaf
+* Bootstrap css
+* Mysql
 
 
 Required tools:
