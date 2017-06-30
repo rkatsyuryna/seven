@@ -10,6 +10,7 @@ import com.seven.models.domainobjects.User;
 import com.seven.models.repositories.CompanyRepository;
 import com.seven.models.repositories.RoleRepository;
 import com.seven.models.repositories.UserRepository;
+import com.seven.services.CurrentUserService;
 import com.seven.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,6 +39,9 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
 
     @Autowired
+    private CurrentUserService currUserService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -53,14 +57,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public Collection<User> getAllUsersManagedBy(String userName) {
         final Collection<User> users = new LinkedList<>();
-        if(SecurityUtils.isAdmin()) {
+        if (currUserService.isAdminUser()) {
             users.addAll((Collection<? extends User>) userRepository.findAll());
         }
-        if(SecurityUtils.isOwner()) {
-
+        if (currUserService.isOwnerUser()) {
             Optional<User> currUser = getUserByEmail(userName);
 
-            currUser.ifPresent(currUsr -> getAllUsersByCompany(currUsr.getCompany().getName()).stream().filter(user -> !user.isOwner()).forEach(users::add));
+            currUser.ifPresent(currUsr -> getAllUsersByCompany(currUsr.getCompany().getName()).stream().filter(User::isOwner).forEach(users::add));
         }
 
         return users;

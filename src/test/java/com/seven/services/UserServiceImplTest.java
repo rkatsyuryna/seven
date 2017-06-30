@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Collections;
+
 import static org.mockito.Mockito.*;
 
 /**
@@ -36,6 +38,9 @@ public class UserServiceImplTest {
     @Mock
     private PasswordEncoder passwordEncoder;
 
+    @Mock
+    private CurrentUserService currentUserService;
+
     @Test
     public void testGetUserByIdCallRepository() {
         long id = 123L;
@@ -47,14 +52,16 @@ public class UserServiceImplTest {
     }
 
     @Test
-    @Ignore("need refactoring")
-    public void testGetAllUsersManagedBy() {
+    public void testGetAllUsersManagedByForAdminReturnEmpty() {
         String userName = "testUser";
+
+        when(currentUserService.isAdminUser()).thenReturn(true);
+        when(userRepository.findAll()).thenReturn(Collections.emptyList());
 
         service.getAllUsersManagedBy(userName);
 
-      //TODO :: need move to separate class and mock calls for  (SecurityUtils. isAdmin() & isOwner(
+        verify(userRepository).findAll();
+        verifyNoMoreInteractions(userRepository);
     }
-
 
 }

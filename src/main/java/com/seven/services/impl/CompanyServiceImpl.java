@@ -9,6 +9,7 @@ import com.seven.models.repositories.CompanyRepository;
 import com.seven.models.repositories.RoleRepository;
 import com.seven.models.repositories.UserRepository;
 import com.seven.services.CompanyService;
+import com.seven.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -38,7 +39,7 @@ public class CompanyServiceImpl implements CompanyService {
     private UserRepository userRepository;
 
     @Autowired
-    private NotificationServiceImpl notificationService;
+    private NotificationService notificationService;
 
     @Override
     public Collection<Company> getAllCompanies() {
@@ -67,7 +68,7 @@ public class CompanyServiceImpl implements CompanyService {
         userRepository.save(user);
 
 
-        notificationService.sendNotificaitoin(userMail, randomPassword);
+        notificationService.sendNotification(userMail, randomPassword);
 
         return company;
     }
